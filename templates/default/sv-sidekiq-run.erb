@@ -1,0 +1,19 @@
+#!/bin/sh -e
+# Start sidekiq service
+
+# Redirect stderr so everything ends up in the log file
+exec 2>&1
+
+. /etc/profile
+
+# Remove pidfile just incase it wasn't properly removed on shutdown.
+rm -f "<%= @options[:pidfile] %>"
+
+cd "<%= @options[:working_dir] %>"
+
+# Start sidekiq
+<% if @options[:bundle_exec] -%>
+  exec chpst -u <%= @options[:owner] %>:<%= @options[:group] %> bundle exec sidekiq -C <%= @options[:sidekiq_config] %>
+<% else -%>
+  exec chpst -u <%= @options[:owner] %>:<%= @options[:group] %> sidekiq -C <%= @options[:sidekiq_config] %>
+<% end -%>

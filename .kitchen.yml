@@ -1,0 +1,14 @@
+---
+driver_plugin: digitalocean
+driver_config:
+  flavor_id: 66
+  require_chef_omnibus: latest
+
+platforms:
+- name: debian-7.0
+- name: ubuntu-13.10
+
+suites:
+- name: default
+  run_list:
+  - recipe[sidekiq-test]

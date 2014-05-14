@@ -1,0 +1,12 @@
+---
+:verbose: <%= @verbose %>
+:pidfile: <%= @pidfile %>
+:logfile: <%= @logfile %>
+:environment: <%= @rails_env %>
+:concurrency: <%= @concurrency %>
+:processes: <%= @processes %>
+:timeout: <%= @timeout %>
+:queues:
+<% @queues.each do |queue_name, priority| -%>
+  - [<%= queue_name %>, <%= priority %>]
+<% end -%>
