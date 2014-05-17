@@ -1,4 +1,4 @@
-# Puma [![Build Status](https://secure.travis-ci.org/wallgig/chef-sidekiq.png)](http://travis-ci.org/wallgig/chef-sidekiq)
+# Sidekiq [![Build Status](https://secure.travis-ci.org/wallgig/chef-sidekiq.png)](http://travis-ci.org/wallgig/chef-sidekiq)
 
 Chef cookbook for [sidekiq](http://sidekiq.org/).
 
@@ -13,6 +13,108 @@ Tested on chef 11
 The following cookbooks are required:
 
 * [runit](http://github.com/hw-cookbooks/runit)
+
+## Resources/Providers
+
+### sidekiq
+
+This generates a sidekiq configuration and creates a [runit](http://smarden.org/runit/) service. This cookbooks expects that you are deploying with
+capistrano, but should be flexible enough to tune for whatever you need.
+
+### Actions
+
+* :create create a named puma configuration, and service.
+* :delete disable a named puma service, and deletes the puma directory.
+
+### Examples
+
+```ruby
+sidekiq 'example.com' do
+  concurrency 2
+  processes 2
+  queues 'job-queue' => 5, 'other-queue' => 1
+end
+```
+
+```ruby
+sidekiq 'example.com' do
+  concurrency 2
+  processes 2
+  queues 'job-queue' => 5, 'other-queue' => 1
+  directory '/srv/www/myapp'
+  puma_dir '/srv/www/myapp/puma'
+end
+```
+
+``ruby
+sidekiq 'example.com' do
+  action :delete
+end
+``
+
+## Attributes
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+      <th>Default Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>name</td>
+      <td><b>Name attribute:</b> The name of the sidekiq instance.</td>
+      <td><code>nil</code></td>
+    </tr>
+    <tr>
+      <td>queues</td>
+      <td>A hash of sidekiq queues</td>
+      <td><code>nil</code></td>
+    </tr>
+    <tr>
+      <td>verbose</td>
+      <td>Should the sidekiq daemon be verbose, useful for debugging.</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>concurrency</td>
+      <td>Number of concurrent sidekiq processes</td>
+      <td><code>25</code></td>
+    </tr>
+    <tr>
+      <td>processes</td>
+      <td>The number of processes</td>
+      <td><code>1</code></td>
+    </tr>
+    <tr>
+      <td>timeout</td>
+      <td>Timeout for sidekiq jobs, in seconds</td>
+      <td><code>30</code></td>
+    </tr>
+    <tr>
+      <td>rails_env</td>
+      <td>Your rails environment</td>
+      <td><code>production</code></td>
+    </tr>
+    <tr>
+      <td>bundle_exec</td>
+      <td>Should bundle exec be used to start sidekiq</td>
+      <td><code>true</code></td>
+    </tr>
+    <tr>
+      <td>owner</td>
+      <td>The user of the sidekiq process</td>
+      <td><code>www-data</code></td>
+    </tr>
+    <tr>
+      <td>group</td>
+      <td>The group of the sidekiq process</td>
+      <td><code>www-data</code></td>
+    </tr>
+   </tr>
+  </tbody>
+</table>
 
 ## Platforms
 
