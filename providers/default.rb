@@ -137,13 +137,17 @@ action :create do
 end
 
 action :delete do
-  if sidekiq_config_exist?
-    if ::File.writable?(sidekiq_config)
-      Chef::Log.info("Deleting #{new_resource.name} at #{sidekiq_config}")
-      ::File.delete(sidekiq_config)
-      new_resource.updated_by_last_action(true)
-    else
-      fail "Cannot delete #{new_resource.name} at #{sidekiq_config}!"
+  converge_by("Disabling sidekiq-#{new_resource.name}") do
+    run_context.include_recipe 'runit'
+    runit_service "sidekiq-#{new_resource.name}" do
+      action :disable
+    end
+  end
+
+  converge_by("Deleting sidekiq_dir #{sidekiq_dir}") do
+    directory sidekiq_dir do
+      recursive true
+      action :delete
     end
   end
 end

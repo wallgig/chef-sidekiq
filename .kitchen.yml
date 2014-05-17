@@ -12,3 +12,6 @@ suites:
 - name: default
   run_list:
   - recipe[sidekiq-test]
+- name: sidekiq-delete
+  run_list:
+  - recipe[sidekiq-test::delete]

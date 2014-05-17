@@ -5,8 +5,8 @@ describe file('/srv/apps/railstest/shared/sidekiq/railstest.yml') do
   it { should be_mode 644 }
   it { should be_owned_by 'www-data' }
   it { should be_grouped_into 'www-data' }
-  it { should contain '---
 :verbose: false
+  it { should contain '---
 :pidfile: /srv/apps/railstest/shared/sidekiq/railstest.pid
 :logfile: /srv/apps/railstest/shared/sidekiq/railstest.log
 :concurrency: 2
@@ -31,6 +31,6 @@ describe file('/srv/apps/railstest/shared/sidekiq/railstest.log') do
   it { should be_grouped_into 'www-data' }
 end
 
-describe service('railstest') do
+describe service('sidekiq-railstest') do
   it { should be_running }
 end
