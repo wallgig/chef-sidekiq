@@ -29,32 +29,14 @@ attribute :rails_env, :kind_of => String, :default => 'production'
 attribute :bundle_exec, :kind_of => [TrueClass, FalseClass], :default => true
 attribute :owner, :regex => Chef::Config[:user_valid_regex], :default => 'www-data'
 attribute :group, :regex => Chef::Config[:group_valid_regex], :default => 'www-data'
+attribute :directory, :kind_of => [String, NilClass], :default => nil
+attribute :working_dir, :kind_of => [String, NilClass], :default => nil
+attribute :sidekiq_dir, :kind_of => [String, NilClass], :default => nil
+attribute :sidekiq_config, :kind_of => [String, NilClass], :default => nil
+attribute :pidfile, :kind_of => [String, NilClass], :default => nil
+attribute :logfile, :kind_of => [String, NilClass], :default => nil
 
 def initialize(*args)
   super
   @action = :create
-end
-
-def directory
-  ::File.join('/srv/apps', name)
-end
-
-def working_dir
-  ::File.join(directory, '/current')
-end
-
-def sidekiq_dir
-  ::File.join(directory, '/shared/sidekiq')
-end
-
-def sidekiq_config
-  ::File.join(sidekiq_dir, name + '.yml')
-end
-
-def pidfile
-  ::File.join(sidekiq_dir, name + '.pid')
-end
-
-def logfile
-  ::File.join(sidekiq_dir, name + '.log')
 end
