@@ -46,11 +46,11 @@ sidekiq 'example.com' do
 end
 ```
 
-``ruby
+```ruby
 sidekiq 'example.com' do
   action :delete
 end
-``
+```
 
 ## Attributes
 <table>
