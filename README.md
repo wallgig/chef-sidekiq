@@ -8,6 +8,11 @@ Chef cookbook for [sidekiq](http://sidekiq.org/).
 
 Tested on chef 11
 
+## Platforms
+
+* Debian 7+
+* Ubuntu 13.10+
+
 ## Cookbooks
 
 The following cookbooks are required:
@@ -52,7 +57,7 @@ sidekiq 'example.com' do
 end
 ```
 
-## Attributes
+### Attributes
 <table>
   <thead>
     <tr>
@@ -115,11 +120,6 @@ end
    </tr>
   </tbody>
 </table>
-
-## Platforms
-
-* Debian 7+
-* Ubuntu 13.10+
 
 # Issues
 
