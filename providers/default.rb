@@ -71,6 +71,8 @@ end
 action :create do
   Chef::Log.info("Creating #{new_resource.name} at #{sidekiq_config}") unless sidekiq_config_exist?
 
+  log_file = logfile
+
   converge_by("Create sidekiq dir #{new_resource.sidekiq_dir}") do
     directory sidekiq_dir do
       owner new_resource.owner if new_resource.owner
@@ -133,6 +135,20 @@ action :create do
         :owner => new_resource.owner,
         :group => new_resource.group
       )
+    end
+  end
+
+  converge_by("Create logroate config #{new_resource.name}") do
+    run_context.include_recipe 'logrotate'
+    logrotate_app "sidekiq-#{new_resource.name}" do
+      cookbook 'logrotate'
+      path log_file
+      frequency 'daily'
+      rotate 30
+      size '5M'
+      create    '644 root adm'
+      options ['missingok', 'compress', 'delaycompress', 'notifempty', 'dateext']
+      only_if { new_resource.logrotate }
     end
   end
 end

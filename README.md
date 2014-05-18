@@ -28,8 +28,8 @@ capistrano, but should be flexible enough to tune for whatever you need.
 
 ### Actions
 
-* :create create a named puma configuration, and service.
-* :delete disable a named puma service, and deletes the puma directory.
+* :create create a named sidekiq configuration, and service.
+* :delete disable a named sidekiq service, and deletes the sidekiq directory.
 
 ### Examples
 
@@ -47,7 +47,7 @@ sidekiq 'example.com' do
   processes 2
   queues 'job-queue' => 5, 'other-queue' => 1
   directory '/srv/www/myapp'
-  puma_dir '/srv/www/myapp/puma'
+  sidekiq_dir '/srv/www/myapp/sidekiq'
 end
 ```
 

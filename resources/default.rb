@@ -27,6 +27,7 @@ attribute :processes, :kind_of => Integer, :default => 1
 attribute :timeout, :kind_of => Integer, :default => 30
 attribute :rails_env, :kind_of => String, :default => 'production'
 attribute :bundle_exec, :kind_of => [TrueClass, FalseClass], :default => true
+attribute :logrotate, :kind_of => [TrueClass, FalseClass], :default => true
 attribute :owner, :regex => Chef::Config[:user_valid_regex], :default => 'www-data'
 attribute :group, :regex => Chef::Config[:group_valid_regex], :default => 'www-data'
 attribute :directory, :kind_of => [String, NilClass], :default => nil
