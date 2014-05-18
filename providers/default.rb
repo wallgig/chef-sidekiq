@@ -111,6 +111,7 @@ action :create do
         :pidfile => pidfile,
         :logfile => logfile
       )
+      notifies :restart, "runit_service[sidekiq-#{new_resource.name}]", :delayed
     end
   end
 
