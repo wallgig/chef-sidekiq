@@ -22,7 +22,7 @@ attribute :template, :kind_of => String, :default => 'sidekiq.yml.erb'
 attribute :cookbook, :kind_of => String, :default => 'sidekiq'
 attribute :queues, :kind_of => Hash, :required => true
 attribute :verbose, :kind_of => [TrueClass, FalseClass], :default => false
-attribute :concurrency, :kind_of => Integer, :default => 1
+attribute :concurrency, :kind_of => Integer, :default => 25
 attribute :processes, :kind_of => Integer, :default => 1
 attribute :timeout, :kind_of => Integer, :default => 30
 attribute :rails_env, :kind_of => String, :default => 'production'
