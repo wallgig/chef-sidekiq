@@ -18,6 +18,7 @@ Tested on chef 11
 The following cookbooks are required:
 
 * [runit](http://github.com/hw-cookbooks/runit)
+* [logrotate](https://github.com/stevendanna/logrotate)
 
 ## Resources/Providers
 
@@ -105,6 +106,11 @@ end
     <tr>
       <td>bundle_exec</td>
       <td>Should bundle exec be used to start sidekiq</td>
+      <td><code>true</code></td>
+    </tr>
+    <tr>
+      <td>logrotate</td>
+      <td>Enables log rotation with logrotate</td>
       <td><code>true</code></td>
     </tr>
     <tr>
