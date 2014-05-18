@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.3.0 (May 16, 2014)
+## 0.3.0 (May 17, 2014)
 
 * Reload service when template is updated
 * action :delete now deletes sidekiq_dir and disables the service.
