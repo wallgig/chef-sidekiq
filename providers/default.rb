@@ -149,7 +149,7 @@ action :create do
       rotate 30
       size '5M'
       create "0640 #{owner} #{group}"
-      options ['missingok', 'compress', 'delaycompress', 'notifempty', 'dateext']
+      options %w(missingok compress delaycompress notifempty dateext)
       only_if { new_resource.logrotate }
     end
   end
