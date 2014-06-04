@@ -72,6 +72,8 @@ action :create do
   Chef::Log.info("Creating #{new_resource.name} at #{sidekiq_config}") unless sidekiq_config_exist?
 
   log_file = logfile
+  owner = new_resource.owner
+  group = new_resource.group
 
   converge_by("Create sidekiq dir #{new_resource.sidekiq_dir}") do
     directory sidekiq_dir do
@@ -146,7 +148,7 @@ action :create do
       frequency 'daily'
       rotate 30
       size '5M'
-      create    '644 root adm'
+      create "0640 #{owner} #{group}"
       options ['missingok', 'compress', 'delaycompress', 'notifempty', 'dateext']
       only_if { new_resource.logrotate }
     end
