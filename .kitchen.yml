@@ -5,8 +5,8 @@ driver_config:
   require_chef_omnibus: latest
 
 platforms:
-- name: debian-7.0
-- name: ubuntu-13.10
+- name: debian-7-0-x64
+- name: ubuntu-13-10-x64
 
 suites:
 - name: default
