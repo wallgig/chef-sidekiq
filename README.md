@@ -109,6 +109,11 @@ end
       <td><code>true</code></td>
     </tr>
     <tr>
+      <td>bundle_command</td>
+      <td>Allows you to set the path to your bundler executable</td>
+      <td><code>bundle</code></td>
+    </tr>
+    <tr>
       <td>logrotate</td>
       <td>Enables log rotation with logrotate</td>
       <td><code>true</code></td>
