@@ -13,7 +13,7 @@ cd "<%= @options[:working_dir] %>"
 
 # Start sidekiq
 <% if @options[:bundle_exec] -%>
-  exec chpst -u <%= @options[:owner] %>:<%= @options[:group] %> bundle exec sidekiq -C <%= @options[:sidekiq_config] %> -e <%= @options[:rails_env] %>
+  exec chpst -u <%= @options[:owner] %>:<%= @options[:group] %> <%= @options[:bundle_command] %> exec sidekiq -C <%= @options[:sidekiq_config] %> -e <%= @options[:rails_env] %>
 <% else -%>
   exec chpst -u <%= @options[:owner] %>:<%= @options[:group] %> sidekiq -C <%= @options[:sidekiq_config] %> -e <%= @options[:rails_env] %>
 <% end -%>
