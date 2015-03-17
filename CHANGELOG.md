@@ -1,6 +1,10 @@
 # Changelog
 
-## v0.4.1 (June, 05, 2014)
+## v0.5.0 (March 17, 2015)
+
+* Add option to pass bundle_command (PR #2) Thanks to [@miensol](https://github.com/miensol)
+
+## v0.4.1 (June 05, 2014)
 
 * Fix permissions on logfiles
 
